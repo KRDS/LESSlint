@@ -16,10 +16,11 @@ $rules	=	[
 	'OnePropertyPerLine',
 	'ColonSpacing',
 	'OverQualifiedSelector',
+	'NoUnitToZero',
 ];
 
 $rules	=	[
-	'OverQualifiedSelector'
+	'DoNotStyleIds'
 	//'PropertyRepeated'
 ];
 
