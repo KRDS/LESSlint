@@ -29,3 +29,4 @@ catch(Exception $e)
 $lint	=	new Lint($args['paths'], $args['rules'], $args['exclude'], $args['recursive']);
 $lint->check();
 
+exit($lint->hasError() ? 1 : 0);

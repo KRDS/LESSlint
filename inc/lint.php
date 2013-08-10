@@ -7,6 +7,8 @@ class Lint
 	protected $_exclude;
 	protected $_recursive;
 
+	protected $_has_errors;
+
 	public function __construct($paths, $rules, $exclude, $recursive)
 	{
 		$this->_rules		=	$rules;
@@ -61,6 +63,7 @@ class Lint
 
 			if($file_check->hasErrors())
 			{
+				$this->_has_errors	=	true;
 				$nb_files++;
 
 				$ret	.=	'FILE: '.realpath($file).PHP_EOL.PHP_EOL;
@@ -94,6 +97,11 @@ class Lint
 			return $ret;
 		else
 			echo $ret;
+	}
+
+	public function hasErrors()
+	{
+		return $this->_has_errors;
 	}
 
 	protected static function _getLeadCopy($nb_errors, $nb_files)
