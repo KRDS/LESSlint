@@ -16,9 +16,12 @@ lesslint rules.json /path/to/less/folder/ /path/to/file.less
     --recursive
 ```
 
+  * `--exclude` takes file names separated by commas;
+  * `--recursive` recursively browse through the folders to find LESS files.
+
 ## Rules
 
-The following rules are included:
+### Supported rules
 
   * **IndentWithTabs**: use tabs to indent the code, not spaces;
   * **OneSpaceBeforeBracket**: one space before a bracket: `.stuff {`;
@@ -32,8 +35,9 @@ The following rules are included:
   * **DoNotStyleIds**: do not apply a style to IDs (#), use classes;
   * **OpeningBracketInline**: opening bracket should be inline, not on its own line.
 
+### Rules file
 
-Create a rule file:
+Rules file contains the list of rules to be enforced as keys; their parameter a values or `true` if the rule does not support extra parameters:
 
 ```json
 {
