@@ -13,11 +13,6 @@ class Lint
 		$this->_files	=	glob($path);
 		$this->_rules	=	$rules;
 		$this->_exclude	=	$exclude;
-
-		spl_autoload_register(function($name)
-		{
-			require __DIR__.'/../checks/'.substr($name, 7).'.php';
-		});
 	}
 
 	public function check($return = false)

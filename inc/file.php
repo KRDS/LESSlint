@@ -9,7 +9,7 @@ class File
 
 	protected static $_pseudo_classes	=	[ 'active', 'checked', 'default', 'dir', 'disabled', 'empty', 'enabled', 'first', 'first-child', 'first-of-type', 'fullscreen', 'focus', 'hover', 'indeterminate', 'in-range', 'invalid', 'lang', 'last-child', 'last-of-type', 'left', 'link', 'not', 'nth-child', 'nth-last-child', 'nth-last-of-type', 'nth-of-type', 'only-child', 'only-of-type', 'optional', 'out-of-range', 'read-only', 'read-write', 'required', 'right', 'root', 'scope', 'target', 'valid', 'visited', ];
 
-	public function __construct($path, $checks)
+	public function __construct($path, $rules)
 	{
 		$content	=	file_get_contents($path);
 		
@@ -20,10 +20,13 @@ class File
 
 		$this->_lines	=	explode(PHP_EOL, $content);
 		
-		foreach($checks as $check)
+		foreach($rules as $rule => $settings)
 		{
-			$class_name			=	'Checks_'.$check;
-			$this->_checks[]	=	new $class_name;
+			if($settings !== false)
+			{
+				$class_name			=	'Checks_'.$rule;
+				$this->_checks[]	=	new $class_name($settings);
+			}
 		}
 	}
 
