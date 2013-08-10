@@ -13,7 +13,7 @@ class File
 	{
 		$content	=	file_get_contents($path);
 		
-		// Escape some uninteresting stuff to avoid messing up with some checks
+		// Escape a couple of tricky stuff to avoid messing up with some checks
 		$content	=	self::_escapeNonEndOfBlockBrackets($content);
 		$content	=	self::_escapeNonEndOfLineSemiColon($content);
 		$content	=	self::_escapePseudoClassesColon($content);
