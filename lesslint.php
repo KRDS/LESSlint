@@ -1,19 +1,15 @@
 #!/usr/bin/php
 <?php
 
-require __DIR__.'/inc/bootstrap.php';
+require __DIR__.'/cli.php';
+require __DIR__.'/lint.php';
+require __DIR__.'/file.php';
 
+//Check the arguments
+//-------------------------------------------------------------->
 if($argc < 3)
 {
-	echo <<<KRDS
-LESSlint v0.1
-
-Usage: lesslint rules.json /path/to/less/folder/ /path/to/file.less
-    --exclude=file.less,lib.less
-	--recursive
-
-KRDS;
-
+	Cli::showUsage();
 	exit;
 }
 
@@ -25,6 +21,13 @@ catch(Exception $e)
 {
 	die('Error: '.$e->getMessage());
 }
+
+//Lint the files
+//-------------------------------------------------------------->
+spl_autoload_register(function($name)
+{
+	require __DIR__.'/../checks/'.substr($name, 7).'.php';
+});
 
 $lint	=	new Lint($args['paths'], $args['rules'], $args['exclude'], $args['recursive']);
 $lint->check();

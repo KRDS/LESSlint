@@ -59,4 +59,17 @@ abstract class Cli
 
 		return $ret;
 	}
+
+	public static function showUsage()
+	{
+		echo <<<KRDS
+LESSlint v0.1
+
+Usage: lesslint rules.json /path/to/less/folder/ /path/to/file.less
+    --exclude=file.less,lib.less
+	--recursive
+
+KRDS;
+		
+	}
 }
