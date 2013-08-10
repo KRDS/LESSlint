@@ -1,3 +1,4 @@
+#!/usr/bin/php
 <?php
 
 require __DIR__.'/inc/bootstrap.php';
@@ -9,6 +10,7 @@ LESSlint v0.1
 
 Usage: lesslint rules.json /path/to/less/files
     --exclude=file.less,lib.less
+	--recursive
 
 KRDS;
 

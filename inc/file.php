@@ -44,14 +44,14 @@ class File
 		}
 	}
 
-	public function getErrors()
-	{
-		return $this->_errors;
-	}
-
 	public function hasErrors()
 	{
 		return ! empty($this->_errors);
+	}
+
+	public function getErrors()
+	{
+		return $this->_errors;
 	}
 
 	protected function _error($error, $line)
