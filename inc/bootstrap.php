@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__.'/Cli.php';
+require __DIR__.'/cli.php';
 require __DIR__.'/lint.php';
 require __DIR__.'/file.php';
 

@@ -99,7 +99,7 @@ class Lint
 	protected static function _getLeadCopy($nb_errors, $nb_files)
 	{
 		$ret	=	'Found ' .$nb_errors.' error'.($nb_errors !== 1 ? 's' : null);
-		$ret	.=	' in '.$nb_files.' file'.($nb_files !== 1 ? 's' : null);
+		$ret	.=	' in '.$nb_files.' file'.($nb_files !== 1 ? 's' : null).'.';
 
 		return $ret;
 	}
