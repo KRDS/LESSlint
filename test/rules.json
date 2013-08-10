@@ -1,0 +1,13 @@
+{
+	"IndentWithTabs": true,
+	"NotImportant": true,
+	"OneSpaceBeforeBracket": true,
+	"WrongIndent": true,
+	"ClosingBracketOnItsOwnLine": true,
+	"ValidCssProperty": true,
+	"OnePropertyPerLine": true,
+	"ColonSpacing": true,
+	"OverQualifiedSelector": true,
+	"NoUnitToZero": true,
+	"OpeningBracketInline": true
+}
