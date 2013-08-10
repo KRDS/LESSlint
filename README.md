@@ -11,7 +11,7 @@ PHP 5.4+
 ## Usage
 
 ```
-lesslint /path/to/less/folder/ /path/to/file.less rules.json
+lesslint rules.json /path/to/less/folder/ /path/to/file.less
     --exclude=file.less,lib.less
     --recursive
 ```

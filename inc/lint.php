@@ -2,17 +2,45 @@
 
 class Lint
 {
-	protected $_path;
-	protected $_files;
+	protected $_files	=	[ ];
 	protected $_rules;
 	protected $_exclude;
+	protected $_recursive;
 
-	public function __construct($path, $rules, $exclude)
+	public function __construct($paths, $rules, $exclude, $recursive)
 	{
-		$this->_path	=	$path;
-		$this->_files	=	glob($path);
-		$this->_rules	=	$rules;
-		$this->_exclude	=	$exclude;
+		$this->_rules		=	$rules;
+		$this->_exclude		=	$exclude;
+		$this->_recursive	=	$recursive;
+
+		foreach($paths as $path)
+		{
+			if(is_dir($path))
+			{
+				if($recursive)
+				{
+					foreach(self::_recursiveListFiles($path.'*') as $path_tree)
+					{
+						$glob	=	glob($path_tree.'/*.less');
+
+						if($glob)
+							$this->_files	=	array_merge($this->_files, $glob);
+					}
+				}
+				else
+				{
+					$this->_files	+=	glob($path.'/*.less');
+				}
+			}
+			else if(is_file($path))
+			{
+				$this->_files[]	=	$path;
+			}
+			else
+			{
+				throw new Exception('Unknown path “'.$path.'”');
+			}
+		}
 	}
 
 	public function check($return = false)
@@ -72,6 +100,24 @@ class Lint
 	{
 		$ret	=	'Found ' .$nb_errors.' error'.($nb_errors !== 1 ? 's' : null);
 		$ret	.=	' in '.$nb_files.' file'.($nb_files !== 1 ? 's' : null);
+
+		return $ret;
+	}
+
+	protected static function _recursiveListFiles($start)
+	{
+		static $ret	=	[ ];
+
+		$dirs	=	glob($start.'/*', GLOB_ONLYDIR);
+
+		if(count($dirs) > 0)
+		{
+			foreach($dirs as $dir)
+				$ret[]	=	$dir;
+		}
+
+		foreach($dirs as $dir)
+			self::_recursiveListFiles($dir);
 
 		return $ret;
 	}
