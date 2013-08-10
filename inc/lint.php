@@ -63,7 +63,7 @@ class Lint
 			{
 				$nb_files++;
 
-				$ret	.=	'FILE: '.$file.PHP_EOL.PHP_EOL;
+				$ret	.=	'FILE: '.realpath($file).PHP_EOL.PHP_EOL;
 
 				foreach($file_check->getErrors() as $num => $errors)
 				{
