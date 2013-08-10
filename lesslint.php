@@ -1,9 +1,9 @@
 #!/usr/bin/php
 <?php
 
-require __DIR__.'/cli.php';
-require __DIR__.'/lint.php';
-require __DIR__.'/file.php';
+require __DIR__.'/inc/cli.php';
+require __DIR__.'/inc/lint.php';
+require __DIR__.'/inc/file.php';
 
 //Check the arguments
 //-------------------------------------------------------------->
