@@ -1,13 +1,14 @@
 {
-	"IndentWithTabs": true,
-	"NotImportant": true,
-	"OneSpaceBeforeBracket": true,
-	"WrongIndent": true,
 	"ClosingBracketOnItsOwnLine": true,
-	"ValidCssProperty": true,
-	"OnePropertyPerLine": true,
 	"ColonSpacing": true,
-	"OverQualifiedSelector": true,
+	"DoNotStyleIds": true,
+	"IndentWithTabs": true,
 	"NoUnitToZero": true,
-	"OpeningBracketInline": true
+	"NotImportant": true,
+	"OnePropertyPerLine": true,
+	"OneSpaceBeforeBracket": true,
+	"OpeningBracketInline": true,
+	"OverQualifiedSelector": true,
+	"ValidCssProperty": true,
+	"WrongIndent": true
 }
