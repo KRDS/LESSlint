@@ -26,7 +26,7 @@ catch(Exception $e)
 //-------------------------------------------------------------->
 spl_autoload_register(function($name)
 {
-	require __DIR__.'/../checks/'.substr($name, 7).'.php';
+	require __DIR__.'/checks/'.substr($name, 7).'.php';
 });
 
 $lint	=	new Lint($args['paths'], $args['rules'], $args['exclude'], $args['recursive']);
