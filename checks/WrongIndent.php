@@ -10,7 +10,13 @@ class Checks_WrongIndent
 
 		if( ! preg_match('#^\s*$#', $line)) // Skip empty lines
 		{
-			if(strpos($line, '}') !== false) // Closing bracket: remove one level of indent
+			$has_opening_bracket	=	strpos($line, '{') !== false;
+			$has_closing_bracket	=	strpos($line, '}') !== false;
+
+			if($has_opening_bracket && $has_closing_bracket)
+				return;
+
+			if($has_closing_bracket) // Closing bracket: remove one level of indent
 				$this->_indent--;
 
 			if($this->_indent < 0)
@@ -21,7 +27,7 @@ class Checks_WrongIndent
 			else
 				$ret	=	! preg_match('#^([\t]{'.$this->_indent.'})[^\t]#', $line);
 
-			if(strpos($line, '{') !== false) // Opening bracket: add one level of indent
+			if($has_opening_bracket) // Opening bracket: add one level of indent
 				$this->_indent++;
 		}
 
