@@ -11,13 +11,18 @@ PHP 5.4+
 ## Usage
 
 ```
-lesslint rules.json /path/to/less/folder/ /path/to/file.less
-    --exclude=file.less,lib.less
-    --recursive
+lesslint [RULES] [PATHS ...]
+	     [--exclude=files]
+	     [--recursive]
 ```
 
-  * `--exclude` takes file names separated by commas;
+  * `RULES` is the path to the JSON rules file;
+  * `PATHS ...` is a list of one or more LESS files and folders to check;
+  * `--exclude` takes file names to exclude separated by commas: `--exclude=lesshat.less,lib.less`;
   * `--recursive` recursively browse through the folders to find LESS files.
+
+
+Sample syntax: `lesslint rules.json /path/to/less/folder/ /path/to/file.less`
 
 ## Rules
 

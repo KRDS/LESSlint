@@ -12,14 +12,14 @@ class File
 	public function __construct($path, $rules)
 	{
 		$content	=	file_get_contents($path);
-		
+
 		// Escape a couple of tricky stuff to avoid messing up with some checks
 		$content	=	self::_escapeNonEndOfBlockBrackets($content);
 		$content	=	self::_escapeNonEndOfLineSemiColon($content);
 		$content	=	self::_escapePseudoClassesColon($content);
 
 		$this->_lines	=	explode(PHP_EOL, $content);
-		
+
 		foreach($rules as $rule => $settings)
 		{
 			if($settings !== false)
@@ -67,7 +67,7 @@ class File
 
 	protected static function _escapeNonEndOfLineSemicolon($content)
 	{
-		return preg_replace('#\((?:(?:.*)(;)(?:.*))*\)#e', 'str_replace(\';\', \',\', \'$0\')', $content);
+		return preg_replace('#\((?:.*;.*)*\)#e', 'str_replace(\';\', \',\', \'$0\')', $content);
 	}
 
 	protected static function _escapePseudoClassesColon($content)
