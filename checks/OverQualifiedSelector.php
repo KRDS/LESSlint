@@ -6,7 +6,7 @@ class Checks_OverQualifiedSelector
 	{
 		if(preg_match('#\s(?:[a-z]+)\.(.*?)\s#i', $line, $matches))
 		{
-			return 'Element selectors should not be overqualified. Found “'.trim($matches[0]).'”';
+			return 'Element selectors should not be overqualified. Found *'.trim($matches[0]).'*';
 		}
 	}
 }

@@ -24,7 +24,7 @@ class Checks_ValidCssProperty
 							|| in_array($property, self::$_trident_properties);
 
 			if( ! $is_valid)
-				return '“'.$property.'” is not a valid property';
+				return '*'.$property.'* is not a valid property';
 		}
 	}
 }
