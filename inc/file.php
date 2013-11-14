@@ -22,7 +22,7 @@ class File
 		$content	=	self::_escapeNonEndOfLineSemiColon($content);
 		$content	=	self::_escapePseudoClassesColon($content);
 
-		$this->_lines	=	explode(PHP_EOL, $content);
+		$this->_lines	=	file($path);
 
 		foreach($rules as $rule => $settings)
 		{
