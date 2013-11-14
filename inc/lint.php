@@ -60,7 +60,7 @@ class Lint
 			$file_check	=	new File($file, $this->_rules);
 
 			$file_check->lint();
-
+			
 			if($file_check->hasErrors())
 			{
 				$this->_has_errors	=	true;

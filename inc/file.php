@@ -2,7 +2,7 @@
 
 class File
 {
-	protected $_lines;
+	protected $_lines	=	[ ];
 	protected $_checks	=	[ ];
 
 	protected $_errors;
@@ -13,6 +13,10 @@ class File
 	{
 		$content	=	file_get_contents($path);
 
+		//Ignore file check
+		if(preg_match('#LessLint\:[\s]?ignore#usi', $content))
+			return;
+			
 		// Escape a couple of tricky stuff to avoid messing up with some checks
 		$content	=	self::_escapeNonEndOfBlockBrackets($content);
 		$content	=	self::_escapeNonEndOfLineSemiColon($content);
