@@ -13,16 +13,17 @@ class File
 	{
 		$content	=	file_get_contents($path);
 
-		//Ignore file check
-		if(preg_match('#LessLint\:[\s]?ignore#usi', $content))
+		$content	=	self::_filterContentToIgnore($content);
+		
+		if( ! $content)
 			return;
-			
+		
 		// Escape a couple of tricky stuff to avoid messing up with some checks
 		$content	=	self::_escapeNonEndOfBlockBrackets($content);
 		$content	=	self::_escapeNonEndOfLineSemiColon($content);
 		$content	=	self::_escapePseudoClassesColon($content);
 
-		$this->_lines	=	file($path);
+		$this->_lines	=	preg_split('/\R/', $content); 
 
 		foreach($rules as $rule => $settings)
 		{
@@ -77,5 +78,31 @@ class File
 	protected static function _escapePseudoClassesColon($content)
 	{
 		return preg_replace('#:('.implode('|', self::$_pseudo_classes).')#e', '\'-$1\'', $content);
+	}
+	
+	protected static function _filterContentToIgnore($content)
+	{
+		//Ignore file check
+		if(preg_match('#LessLint\:[\s]?skip#usi', $content))
+			return false;
+			
+		//Ignore code part check
+		$ignr_pattern		=	'#\/\*[\s]?LessLint\:[\s]?ignore.*?/LessLint\:[\s]?ignore[\s]?\*\/#usi';
+		
+		//Keep the true number of lines for easier error debugging.
+		if(preg_match_all($ignr_pattern, $content, $matches))
+		{
+			$ign_blocks	=	array();
+			
+			foreach($matches[0] as $i => $match)
+				$ign_blocks[$i]	=	count(preg_split('/\R/', $match)); //nb of ignored lines
+			
+			$cnt	=	count($ign_blocks);
+			
+			for($i = 0; $i < $cnt; $i++)
+				$content	=	preg_replace($ignr_pattern, str_repeat("\n", $ign_blocks[$i] - 1), $content, 1);
+		}
+		
+		return $content;
 	}
 }
